@@ -1,4 +1,4 @@
-figma.showUI(__html__)
+figma.showUI(__html__, {height: 400})
 import { generate, presetPalettes } from '../node_modules/@ant-design/colors/lib/index';
 import tinycolor from "../node_modules/tinycolor2/tinycolor";
 
@@ -43,7 +43,7 @@ const colorSets = [colorsLight, colorsDark];
 
 
 figma.ui.onmessage = msg => {
-  if (msg.type === 'color-value') {
+  if (msg.type === 'generate') {
     createColorBlocks(msg.primaryHex, msg.darkBgHex);
   }
 
