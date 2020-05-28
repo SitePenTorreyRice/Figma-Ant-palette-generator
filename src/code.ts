@@ -13,13 +13,11 @@ function formatRgb(color) {
   }
 }
 
-function createColorBlocks(primaryColor:string) {
-  console.log(primaryColor);
+function createColorBlocks(primaryColor:string, darkBgColor:string) {
   let colorsLight = generate(primaryColor);
-  console.log(colorsLight);
   let colorsDark = generate(primaryColor, {
     theme: 'dark',
-    backgroundColor: '#141414'
+    backgroundColor: darkBgColor
   });
 
 colorsDark.reverse();
@@ -46,7 +44,7 @@ const colorSets = [colorsLight, colorsDark];
 
 figma.ui.onmessage = msg => {
   if (msg.type === 'color-value') {
-    createColorBlocks(msg.hex);
+    createColorBlocks(msg.primaryHex, msg.darkBgHex);
   }
 
   figma.closePlugin()

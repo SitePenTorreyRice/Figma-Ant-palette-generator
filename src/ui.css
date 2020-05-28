@@ -1,6 +1,6 @@
 body {
   font: 12px sans-serif;
-  text-align: center;
+  text-align: left;
   margin: 20px;
 }
 button {
@@ -18,8 +18,13 @@ button {
   background: #18A0FB;
   color: white;
 }
+
+label {
+  display: block;
+}
+
 input {
-  border: none;
+  border: 1px solid rgba(0,0,0,0.4);
   outline: none;
   padding: 8px;
 }

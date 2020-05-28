@@ -1,9 +1,11 @@
 import './ui.css'
 
 document.getElementById('create').onclick = () => {
-  const textbox = document.getElementById('color') as HTMLInputElement
-  const hex = textbox.value;
-  parent.postMessage({ pluginMessage: { type: 'color-value', hex } }, '*')
+  const primaryColorTextbox = document.getElementById('color') as HTMLInputElement
+  const darkBgTextbox = document.getElementById('darkBg') as HTMLInputElement
+  const primaryHex = primaryColorTextbox.value;
+  const darkBgHex = darkBgTextbox.value;
+  parent.postMessage({ pluginMessage: { type: 'color-value', primaryHex, darkBgHex } }, '*')
 }
 
 document.getElementById('cancel').onclick = () => {
