@@ -1,2 +1,8 @@
-# Figma-Ant-palette-generator
- Ant.design color palette generator for Figma
+# Webpack 
+
+Generate Ant Design color palettes in Figma based on a given primary color
+
+To build:
+
+    $ npm install
+    $ npx webpack
