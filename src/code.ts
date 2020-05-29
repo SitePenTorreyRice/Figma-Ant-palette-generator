@@ -18,7 +18,8 @@ function createColorBlocks(primaryColor:string, darkBgColor:string) {
   let colorsDark = generate(primaryColor, {
     theme: 'dark',
     backgroundColor: darkBgColor
-  });
+  }
+);
 
 const colorSets = [colorsLight, colorsDark];
   colorSets.forEach(function(colors, idx){

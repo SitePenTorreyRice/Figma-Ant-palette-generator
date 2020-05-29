@@ -6,3 +6,8 @@ To build:
 
     $ npm install
     $ npx webpack
+
+Dev:
+
+    $ npm install
+    $ npx webpack --watch
