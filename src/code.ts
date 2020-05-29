@@ -18,7 +18,7 @@ function formatRgb(color) {
   }
 }
 
-function createColorBlocks(primaryColor:string, darkBgColor:string) {
+function createColorBlocks(primaryColor:string, darkBgColor:string, paletteName:string) {
   let colorsLight = generate(primaryColor);
   let colorsDark = generate(primaryColor, {
     theme: 'dark',
@@ -40,7 +40,10 @@ const colorSets = [colorsLight, colorsDark];
         baseName = "Dark";
       }
       rect.fills = [{type: 'SOLID', color: formatRgb(colors[i])}];
-      rect.name = baseName + " - " + (i+1);
+      rect.name = baseName + "/" + paletteName + "/" + (i+1);
+      const figmaStyle = figma.createPaintStyle()
+      figmaStyle.name = rect.name;
+      figmaStyle.paints = rect.fills;
       figma.currentPage.appendChild(rect);
       nodes.push(rect);
       figma.currentPage.selection = nodes;
@@ -52,7 +55,7 @@ const colorSets = [colorsLight, colorsDark];
 
 figma.ui.onmessage = msg => {
   if (msg.type === 'generate') {
-    createColorBlocks(msg.primaryHex, msg.darkBgHex);
+    createColorBlocks(msg.primaryHex, msg.darkBgHex, msg.paletteName);
   }
 
   figma.closePlugin()
