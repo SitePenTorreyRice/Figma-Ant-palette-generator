@@ -4,6 +4,11 @@ import tinycolor from "../node_modules/tinycolor2/tinycolor";
 
 // Generate color palettes by a given color
 
+const rectSize = {
+  "width": 300,
+  "height": 48
+}
+
 function formatRgb(color) {
   let clr = tinycolor(color);
   return {
@@ -24,18 +29,22 @@ function createColorBlocks(primaryColor:string, darkBgColor:string) {
 const colorSets = [colorsLight, colorsDark];
   colorSets.forEach(function(colors, idx){
     const nodes = []
+    let baseName = "Light";
+
     for (let i = 0; i < colors.length; i++) {
-      const rect = figma.createRectangle()
-      rect.x = i * 128
+      const rect = figma.createRectangle();
+      rect.resize(rectSize.width, rectSize.height);
+      rect.y = i * rectSize.height;
       if(idx > 0) {
-        rect.y = 152;
+        rect.x = rectSize.width + 48;
+        baseName = "Dark";
       }
-      //rect.fills = [{type: 'SOLID', color: {r:1, g:1, b: 1 }}]
-      rect.fills = [{type: 'SOLID', color: formatRgb(colors[i])}]
-      figma.currentPage.appendChild(rect)
-      nodes.push(rect)
-      figma.currentPage.selection = nodes
-      figma.viewport.scrollAndZoomIntoView(nodes)
+      rect.fills = [{type: 'SOLID', color: formatRgb(colors[i])}];
+      rect.name = baseName + " - " + (i+1);
+      figma.currentPage.appendChild(rect);
+      nodes.push(rect);
+      figma.currentPage.selection = nodes;
+      figma.viewport.scrollAndZoomIntoView(nodes);
     }
   });
 }
