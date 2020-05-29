@@ -20,8 +20,6 @@ function createColorBlocks(primaryColor:string, darkBgColor:string) {
     backgroundColor: darkBgColor
   });
 
-colorsDark.reverse();
-
 const colorSets = [colorsLight, colorsDark];
   colorSets.forEach(function(colors, idx){
     const nodes = []
